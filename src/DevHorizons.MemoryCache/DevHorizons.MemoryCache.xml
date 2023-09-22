@@ -1,0 +1,306 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DevHorizons.MemoryCache</name>
+    </assembly>
+    <members>
+        <member name="T:DevHorizons.MemoryCache.CacheConfig">
+            <summary>
+              The cache engine's configuration.
+            </summary>
+            <Created>
+                <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
+                <DateTime>22/09/2023 03:00 PM</DateTime>
+            </Created>
+        </member>
+        <member name="P:DevHorizons.MemoryCache.CacheConfig.Threshold">
+            <summary>
+               Gets or sets the maximum items to be cached.
+               <para>Any new items will override the least recently used cached item in the store.</para>
+            </summary>
+            <Created>
+                <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
+                <DateTime>22/09/2023 03:00 PM</DateTime>
+            </Created>
+        </member>
+        <member name="P:DevHorizons.MemoryCache.CacheConfig.SupressExceptions">
+            <summary>
+               Gets or sets a value indicating whether the engine will throw exception when something goes wrong with getting or settings the cache.
+               <para>If set to 'true' and the 'Get' operation should fail, it will return the default value of the specified type instead of throwing exception.</para>
+               <para>Default Value: <c>false</c>.</para>
+            </summary>
+            <Created>
+                <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
+                <DateTime>22/09/2023 03:00 PM</DateTime>
+            </Created>
+        </member>
+        <member name="P:DevHorizons.MemoryCache.CacheConfig.IgnoreCase">
+            <summary>
+               Gets or sets a value indicating whether ignoring the case of the reference cache keys.
+               <para>If set to true, the engine will ignore the cache key case when getting the value.</para>
+               <para>Default Value: <c>false</c>.</para>
+            </summary>
+            <Created>
+                <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
+                <DateTime>22/09/2023 03:00 PM</DateTime>
+            </Created>
+        </member>
+        <member name="T:DevHorizons.MemoryCache.CacheStore`1">
+            <summary>
+               The cache store which holds the public memory cache stores and all the operations against them.
+            </summary>
+            <typeparam name="T">The type of the cached value.</typeparam>
+            <Created>
+                <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
+                <DateTime>22/09/2023 03:00 PM</DateTime>
+            </Created>
+        </member>
+        <member name="F:DevHorizons.MemoryCache.CacheStore`1.cachedData">
+            <summary>
+               The cached data/values in a list sorted automatically by the key.
+            </summary>
+        </member>
+        <member name="F:DevHorizons.MemoryCache.CacheStore`1.indexedTimeStamp">
+            <summary>
+              A list holds the keys of the cached data sorted automatically by the dynamic timestamp.
+            </summary>
+        </member>
+        <member name="F:DevHorizons.MemoryCache.CacheStore`1.config">
+            <summary>
+               The cache engine configuration.
+            </summary>
+        </member>
+        <member name="M:DevHorizons.MemoryCache.CacheStore`1.#ctor">
+            <summary>
+               Initializes a new instance of the <see cref="T:DevHorizons.MemoryCache.CacheStore`1"/> class.
+            </summary>
+            <Created>
+                <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
+                <DateTime>22/09/2023 03:00 PM</DateTime>
+            </Created>
+        </member>
+        <member name="M:DevHorizons.MemoryCache.CacheStore`1.#ctor(DevHorizons.MemoryCache.CacheConfig)">
+            <summary>
+               Initializes a new instance of the <see cref="T:DevHorizons.MemoryCache.CacheStore`1"/> class.
+            </summary>
+            <param name="cacheConfig">The cache engine configuration.</param>
+        </member>
+        <member name="M:DevHorizons.MemoryCache.CacheStore`1.Get(System.String)">
+            <summary>
+               Gets the cached data/value by the specified unique key.
+            </summary>
+            <param name="key">The unique key of the cached item.</param>
+            <returns>
+               The cached value/data.
+            </returns>
+            <exception cref="T:DevHorizons.MemoryCache.MemoryCacheException">The exception which will be raised if the key does not exist.</exception>
+            <Created>
+                <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
+                <DateTime>22/09/2023 03:00 PM</DateTime>
+            </Created>
+        </member>
+        <member name="M:DevHorizons.MemoryCache.CacheStore`1.Set(System.String,`0)">
+            <summary>
+               Add or override values into the memory cache with the reference of the specified unique key.
+            </summary>
+            <param name="key">The unique reference key.</param>
+            <param name="value">The value to be cached.</param>
+            <returns>
+               The task of the async set operation.
+            </returns>
+            <Created>
+                <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
+                <DateTime>22/09/2023 03:00 PM</DateTime>
+            </Created>
+        </member>
+        <member name="M:DevHorizons.MemoryCache.CacheStore`1.Clear">
+            <summary>
+                Clear/remove all the cached item.
+            </summary>
+        </member>
+        <member name="M:DevHorizons.MemoryCache.CacheStore`1.SetDataWithLocking(System.String,`0)">
+            <summary>
+               Persist the data into the cache store with locking the related store objects.
+            </summary>
+            <param name="key">The cache key.</param>
+            <param name="value">The cache value.</param>
+        </member>
+        <member name="M:DevHorizons.MemoryCache.CacheStore`1.SetData(System.String,`0)">
+            <summary>
+               Persist the data into the cache store.
+            </summary>
+            <param name="key">The cache key.</param>
+            <param name="value">The cache value.</param>
+        </member>
+        <member name="M:DevHorizons.MemoryCache.CacheStore`1.UpdateData(System.String,`0)">
+            <summary>
+               Update the value and the timestamp of the existing cached item in the store store.
+            </summary>
+            <param name="key">The cache key.</param>
+            <param name="value">The cache value.</param>
+        </member>
+        <member name="M:DevHorizons.MemoryCache.CacheStore`1.UpdateIndex(System.String,DevHorizons.MemoryCache.Internal.CacheItem{`0})">
+            <summary>
+               Update the cache timestamp index when it is being used/called by using the "<see cref="M:DevHorizons.MemoryCache.CacheStore`1.Get(System.String)"/>" method.
+            </summary>
+            <param name="key">The cache key.</param>
+            <param name="cacheItem">The cache item.</param>
+        </member>
+        <member name="T:DevHorizons.MemoryCache.ExtensionMethods">
+            <summary>
+               A public static class which holds all the extension methods which can be consumed by the consumer libraries, APIs or applications to wrap around the library with a smoother and quicker way.
+            </summary>
+            <Created>
+                <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
+                <DateTime>22/09/2023 03:00 PM</DateTime>
+            </Created>
+        </member>
+        <member name="M:DevHorizons.MemoryCache.ExtensionMethods.RegisterMemoryCache``1(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+               Register the <c>DevHorizons</c> memory cache engine into the dependency injection <c>(DI)</c> container with the singlton life cycle.
+            </summary>
+            <param name="services">The contract for a collection of service descriptors.</param>
+            <typeparam name="T">The type of the cached data/values.</typeparam>
+            <exception cref="T:System.ArgumentNullException">Raise null exception if the <c>services</c> object is null.</exception>
+            <returns>The contract for a collection of service descriptors which is used in the WebApis DI.</returns>
+            <Created>
+                <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
+                <DateTime>22/09/2023 03:00 PM</DateTime>
+            </Created>
+        </member>
+        <member name="M:DevHorizons.MemoryCache.ExtensionMethods.RegisterMemoryCache``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,DevHorizons.MemoryCache.CacheConfig)">
+            <summary>
+               Register the <c>DevHorizons</c> memory cache engine into the dependency injection <c>(DI)</c> container with the singlton life cycle.
+            </summary>
+            <param name="services">The contract for a collection of service descriptors.</param>
+            <param name="cacheConfig">The cache engine configuration.</param>
+            <typeparam name="T">The type of the cached data/values.</typeparam>
+            <exception cref="T:System.ArgumentNullException">Raise null exception if the <c>services</c> object is null.</exception>
+            <returns>The contract for a collection of service descriptors which is used in the WebApis DI.</returns>
+            <Created>
+                <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
+                <DateTime>22/09/2023 03:00 PM</DateTime>
+            </Created>
+        </member>
+        <member name="T:DevHorizons.MemoryCache.ICacheStore`1">
+            <summary>
+               The cache engine which operates the internal memory cache store.
+            </summary>
+            <typeparam name="T">The type of the cached value.</typeparam>
+            <Created>
+                <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
+                <DateTime>22/09/2023 03:00 PM</DateTime>
+            </Created>
+        </member>
+        <member name="M:DevHorizons.MemoryCache.ICacheStore`1.Get(System.String)">
+            <summary>
+               Gets the cached data/value by the specified unique key.
+            </summary>
+            <param name="key">The unique key of the cached item.</param>
+            <returns>
+               The cached value/data.
+            </returns>
+            <exception cref="T:DevHorizons.MemoryCache.MemoryCacheException">The exception which will be raised if the key does not exist.</exception>
+            <Created>
+                <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
+                <DateTime>22/09/2023 03:00 PM</DateTime>
+            </Created>
+        </member>
+        <member name="M:DevHorizons.MemoryCache.ICacheStore`1.Set(System.String,`0)">
+            <summary>
+               Add or override values into the memory cache with the reference of the specified unique key.
+            </summary>
+            <param name="key">The unique reference key.</param>
+            <param name="value">The value to be cached.</param>
+            <returns>
+               The task of the async set operation.
+            </returns>
+            <Created>
+                <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
+                <DateTime>22/09/2023 03:00 PM</DateTime>
+            </Created>
+        </member>
+        <member name="M:DevHorizons.MemoryCache.ICacheStore`1.Clear">
+            <summary>
+                Clear/remove all the cached item.
+            </summary>
+        </member>
+        <member name="T:DevHorizons.MemoryCache.Internal.CacheItem`1">
+            <summary>
+                The cache item type.
+            </summary>
+            <typeparam name="T">The type of the cached value.</typeparam>
+            <Created>
+                <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
+                <DateTime>22/09/2023 03:00 PM</DateTime>
+            </Created>
+        </member>
+        <member name="M:DevHorizons.MemoryCache.Internal.CacheItem`1.#ctor">
+            <summary>
+               Initializes a new instance of the <see cref="T:DevHorizons.MemoryCache.Internal.CacheItem`1"/> class.
+            </summary>
+            <Created>
+                <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
+                <DateTime>22/09/2023 03:00 PM</DateTime>
+            </Created>
+        </member>
+        <member name="M:DevHorizons.MemoryCache.Internal.CacheItem`1.#ctor(System.DateTime,`0)">
+            <summary>
+               Initializes a new instance of the <see cref="T:DevHorizons.MemoryCache.Internal.CacheItem`1"/> class.
+            </summary>
+            <param name="timeStamp">The timestamp of the cache insertion or usage.</param>
+            <param name="value">The value to be cached.</param>
+            <Created>
+                <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
+                <DateTime>22/09/2023 03:00 PM</DateTime>
+            </Created>
+        </member>
+        <member name="P:DevHorizons.MemoryCache.Internal.CacheItem`1.TimeStamp">
+            <summary>
+               Gets or sets the dynamic timestamp of the cached item which is being set when the cached item is being set the first time and being updated each time getting the cached item.
+            </summary>
+            <Created>
+                <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
+                <DateTime>22/09/2023 03:00 PM</DateTime>
+            </Created>
+        </member>
+        <member name="P:DevHorizons.MemoryCache.Internal.CacheItem`1.Value">
+            <summary>
+               Gets or sets the cached value.
+            </summary>
+            <Created>
+                <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
+                <DateTime>22/09/2023 03:00 PM</DateTime>
+            </Created>
+        </member>
+        <member name="T:DevHorizons.MemoryCache.MemoryCacheException">
+            <summary>
+               The exception that is thrown when the cache engine's operation encounter an error or violation.
+            </summary>
+            <Created>
+                <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
+                <DateTime>22/09/2023 03:00 PM</DateTime>
+            </Created>
+        </member>
+        <member name="M:DevHorizons.MemoryCache.MemoryCacheException.#ctor(System.Int32,System.String)">
+            <summary>
+               Initializes a new instance of the <see cref="T:DevHorizons.MemoryCache.MemoryCacheException"/> class.
+            </summary>
+            <param name="errorCode">The raised error code.</param>
+            <param name="message">The raised error message.</param>
+            <Created>
+                <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
+                <DateTime>22/09/2023 03:00 PM</DateTime>
+            </Created>
+        </member>
+        <member name="P:DevHorizons.MemoryCache.MemoryCacheException.ErrorCode">
+            <summary>
+               Gets the raised error code.
+            </summary>
+            <Created>
+                <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
+                <DateTime>22/09/2023 03:00 PM</DateTime>
+            </Created>
+        </member>
+    </members>
+</doc>
