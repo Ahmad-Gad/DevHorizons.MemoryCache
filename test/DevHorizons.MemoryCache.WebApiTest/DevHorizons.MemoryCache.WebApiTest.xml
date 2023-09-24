@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DevHorizons.MemoryCache.WebApiTest</name>
+    </assembly>
+    <members>
+        <member name="M:DevHorizons.MemoryCache.WebApiTest.Controllers.MemoryCacheController.Get(System.String)">
+            <summary>
+               Get value from the cache.
+            </summary>
+            <param name="key">The unique reference key of the cached item.</param>
+            <returns>
+               The cached value.
+            </returns>
+            <exception cref="T:DevHorizons.MemoryCache.MemoryCacheException">Exception will be raised if the key doesn't not exist in the cache store.</exception>
+        </member>
+        <member name="M:DevHorizons.MemoryCache.WebApiTest.Controllers.MemoryCacheController.Set(System.String,System.Object)">
+            <summary>
+               Add item to the cache store with the specified unique reference key and the specified value.
+            </summary>
+            <param name="key">The unique reference key</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:DevHorizons.MemoryCache.WebApiTest.Controllers.MemoryCacheController.Clear">
+            <summary>
+               Clear the whole cache store.
+            </summary>
+        </member>
+    </members>
+</doc>

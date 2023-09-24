@@ -36,7 +36,7 @@ namespace DevHorizons.MemoryCache
         /// <summary>
         ///   A list holds the keys of the cached data sorted automatically by the dynamic timestamp.
         /// </summary>
-        private SortedList<DateTime, string> indexedTimeStamp = new SortedList<DateTime, string>();
+        private SortedDictionary<DateTime, string> indexedTimeStamp = new SortedDictionary<DateTime, string>();
 
         /// <summary>
         ///    The cache engine configuration.
@@ -97,7 +97,7 @@ namespace DevHorizons.MemoryCache
                 return default;
             }
 
-            throw new MemoryCacheException(500, $"The key '{key}' is invalid!");
+            throw new MemoryCacheException(404, $"The key '{key}' is invalid!");
         }
 
         /// <summary>
@@ -153,7 +153,7 @@ namespace DevHorizons.MemoryCache
                         var indexEnumerator = this.indexedTimeStamp.GetEnumerator();
                         indexEnumerator.MoveNext();
                         var oldKey = indexEnumerator.Current;
-                        this.indexedTimeStamp.RemoveAt(0);
+                        this.indexedTimeStamp.Remove(oldKey.Key);
                         this.cachedData.Remove(oldKey.Value);
                     }
 

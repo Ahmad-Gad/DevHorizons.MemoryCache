@@ -10,6 +10,7 @@ builder.Services.RegisterMemoryCache<object>(applicationConfiguration.CacheConfi
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.ConfigureSwagger(applicationConfiguration);
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
